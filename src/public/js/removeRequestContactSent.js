@@ -10,7 +10,9 @@ function removeRequestContactSent() {
           $("#find-user").find(`div.user-remove-request-contact-sent[data-uid = ${targetId}]`).hide();
           $("#find-user").find(`div.user-add-new-contact[data-uid = ${targetId}]`).css("display", "inline-block");
           
-          decreaseNumberNotifContact("count-request-contact-sent");
+          decreaseNumberNotification("noti_contact_counter", 1); // js/caculateNotification.js
+
+          decreaseNumberNotifContact("count-request-contact-sent"); // js/caculateNotifContact.js
 
           // Xóa ở modal tab đang chờ xác nhận
           $("#request-contact-sent").find(`li[data-uid = ${targetId}]`).remove();
@@ -31,8 +33,8 @@ socket.on("response-remove-request-contact-sent", function(user) {
   
   decreaseNumberNotifContact("count-request-contact-received");
 
-  decreaseNumberNotification("noti_contact_counter", 1);
-  decreaseNumberNotification("noti_counter", 1);
+  decreaseNumberNotification("noti_contact_counter", 1); // js/caculateNotification.js
+  decreaseNumberNotification("noti_counter", 1); // js/caculateNotification.js
 });
 
 $(document).ready(function() {
