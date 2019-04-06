@@ -16,7 +16,7 @@ let addNewContact = (io) => {
         address: (socket.request.user.address !== null) ? socket.request.user.address : ""
       };
       if (clients[data.contactId]) {
-        emitNotifyToArray(clients, data.contactId, io, "response-add-new-contact", currentUser);
+        emitNotifyToArray(clients, data.contactId, io, "response-add-new-contact", currentUser)
       }
     });
 
