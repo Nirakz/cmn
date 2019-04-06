@@ -26,6 +26,14 @@ let MessageSchema = new Schema({
 
 MessageSchema.statics = {
   /**
+   * create new message
+   * @param {object} item 
+   */
+  createNew(item) {
+    return this.create(item);
+  },
+
+  /**
    * get message in personal
    * @param {string} senderId currentUserId
    * @param {string} receiverId id of contact
