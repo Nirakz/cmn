@@ -16,7 +16,7 @@ let approveRequestContactReceived = (io) => {
         address: (socket.request.user.address !== null) ? socket.request.user.address : ""
       };
       if (clients[data.contactId]) {
-        emitNotifyToArray(clients, data.contactId, io, "response-approve-request-contact-received", currentUser);
+        emitNotifyToArray(clients, data.contactId, io, "response-approve-request-contact-received", currentUser)
       }
     });
 

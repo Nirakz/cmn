@@ -3,8 +3,6 @@ import removeRequestContactSent from "./contact/removeRequestContactSent";
 import removeRequestContactReceived from "./contact/removeRequestContactReceived";
 import approveRequestContactReceived from "./contact/approveRequestContactReceived";
 import removeContact from "./contact/removeContact";
-import typingOn from "./chat/typingOn";
-import typingOff from "./chat/typingOff";
 
 /**
  * @param io from socket.jo library
@@ -15,8 +13,6 @@ let initSockets = (io) => {
   removeRequestContactReceived(io);
   approveRequestContactReceived(io);
   removeContact(io);
-  typingOn(io);
-  typingOff(io);
 };
 
 module.exports = initSockets;
