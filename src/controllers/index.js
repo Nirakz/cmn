@@ -5,6 +5,7 @@ import contactController from "./contactController";
 import notificationController from "./notificationController";
 import messageController from "./messageController";
 import groupChatController from "./groupChatController";
+import extrasController from "./extrasController";
 
 export const home = homeController;
 export const auth = authController;
@@ -13,3 +14,4 @@ export const contact = contactController;
 export const notification = notificationController;
 export const message = messageController;
 export const groupChat = groupChatController;
+export const extras = extrasController;

@@ -43,8 +43,15 @@ $(document).ready(function() {
       // Step 09: update online
       socket.emit("check-status");
 
+      // Step 10: remove loading
       $("#link-read-more-all-chat").css("display", "inline-block");
       $(".read-more-all-chat-loader").css("display", "none");
+
+      // step 11: call readmoreMessages
+      // readMoreMessages();
+
+      // extras
+      zoomImageChat();
     });
   });;
 });
