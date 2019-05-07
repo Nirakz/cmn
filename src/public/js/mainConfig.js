@@ -192,6 +192,18 @@ function bufferToBase64(buffer) {
   return btoa(new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), ""));
 }
 
+// extras
+function zoomImageChat() {
+  $(".show-image-chat").unbind("click").on("click", function() {
+    $("#img-chat-modal").css("display", "block");
+    $("#img-chat-modal-content").attr("src", $(this)[0].src);
+
+    $("#img-chat-modal").on("click", function() {
+      $(this).css("display", "none");
+    });
+  });
+}
+
 $(document).ready(function() {
   // Hide số thông báo trên đầu icon mở modal contact
   showModalContacts();
@@ -227,4 +239,7 @@ $(document).ready(function() {
   $("#video-chat-group").bind("click", function() {
     alertify.notify("Không khả dụng tính năng này với nhóm trò chuyện. Vui lòng thử lại với trò chuyện cá nhân.", "error", 7);
   });
+
+  // extras
+  zoomImageChat();
 });

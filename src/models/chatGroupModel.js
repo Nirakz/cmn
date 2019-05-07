@@ -57,6 +57,16 @@ ChatGroupSchema.statics = {
     return this.find({
       "members": {$elemMatch: {"userId": userId}}
     }).sort({"updatedAt": -1}).skip(skip).limit(limit).exec();
+  },
+
+  // extras
+  getChatGroupsByUserIdAndKeyword(userId, keyword, limit) {
+    return this.find({
+      $and: [
+        { "members": {$elemMatch: {"userId": userId}} },
+        { "name": {"$regex": new RegExp(keyword, "i")} },
+      ]
+    }).sort({"updatedAt": -1}).limit(limit).exec();
   }
 };
 

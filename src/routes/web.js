@@ -1,6 +1,6 @@
 import express from "express";
-import {home, auth, user, contact, notification, message, groupChat} from "./../controllers/index";
-import {authValid, userValid, contactValid, messageValid, groupChatValid} from "./../validation/index";
+import {home, auth, user, contact, notification, message, groupChat, extras} from "./../controllers/index";
+import {authValid, userValid, contactValid, messageValid, groupChatValid, extrasValid} from "./../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
 import initPassportFacebook from "./../controllers/passportController/facebook";
@@ -78,6 +78,11 @@ let initRoutes = (app) => {
   router.get("/message/read-more", auth.checkLoggedIn, message.readMore);
 
   router.post("/group-chat/add-new", auth.checkLoggedIn, groupChatValid.addNewGroup, groupChat.addNewGroup);
+
+  // extras, not in videos
+  router.get("/conversation/search/:keyword", auth.checkLoggedIn, extrasValid.searchConversation, extras.searchConversation);
+  router.get("/message/read-more-personal-chat", auth.checkLoggedIn, extras.readMorePersonalChat);
+  router.get("/message/read-more-group-chat", auth.checkLoggedIn, extras.readMoreGroupChat);
 
   return app.use("/", router);
 };

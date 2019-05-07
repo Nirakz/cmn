@@ -1,4 +1,5 @@
 function readMoreMessages() {
+  // $(".right .chat").unbind("scroll").on("scroll", function() {
   $(".right .chat").scroll(function() {
 
     // get the first message
@@ -44,6 +45,9 @@ function readMoreMessages() {
 
         // Step 07: remove message loading
         thisDom.find("img.message-loading").remove();
+
+        // extras
+        zoomImageChat();
       });
     }
   });

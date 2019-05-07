@@ -82,6 +82,9 @@ function imageChat(divId) {
         // Step 09: Add to modal image
         let imageChatToAddModal = `<img src="data:${data.message.file.contentType}; base64, ${bufferToBase64(data.message.file.data.data)}">`;
         $(`#imagesModal_${divId}`).find("div.all-images").append(imageChatToAddModal);
+
+        // extras step 10
+        zoomImageChat();
       },
       error: function(error) {
         alertify.notify(error.responseText, "error", 7);
