@@ -151,6 +151,9 @@ function approveRequestContactReceived() {
 
           // Step 08: update online
           socket.emit("check-status");
+
+          // extras
+          userTalk();
         }
       }
     });
@@ -317,6 +320,9 @@ socket.on("response-approve-request-contact-received", function(user) {
 
   // Step 08: update online
   socket.emit("check-status");
+
+  // extras
+  userTalk();
 });
 
 $(document).ready(function() {

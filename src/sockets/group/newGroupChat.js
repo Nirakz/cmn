@@ -15,7 +15,8 @@ let newGroupChat = (io) => {
       clients = pushSocketIdToArray(clients, data.groupChat._id, socket.id);
 
       let response = {
-        groupChat: data.groupChat
+        groupChat: data.groupChat,
+        membersModalData: data.membersModalData
       };
 
       data.groupChat.members.forEach(member => {

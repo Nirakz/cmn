@@ -113,6 +113,13 @@ let readMoreGroupChat = (currentUserId, skipGroup) => {
         let getMessages = await MessageModel.model.getMessagesInGroup(conversation._id, LIMIT_MESSAGES_TAKEN);
         conversation.messages = _.reverse(getMessages);
 
+        // extras get userInfo
+        conversation.membersInfo = [];
+        for (let member of conversation.members) {
+          let userInfo = await UserModel.getNormalUserDataById(member.userId);
+          conversation.membersInfo.push(userInfo);
+        }
+
         return conversation;
       });
       let groupConversationsWithMessages = await Promise.all(groupConversationsWithMessagesPromise);

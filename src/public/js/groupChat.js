@@ -140,8 +140,9 @@ function callCreateGroupChat() {
                     <a href="javascript:void(0)">&nbsp;</a>
                 </span>
                 <span class="chat-menu-right">
-                    <a href="javascript:void(0)" class="number-members" data-toggle="modal">
+                    <a href="#membersModal_${data.groupChat._id}" class="number-members" data-toggle="modal">
                         <span class="show-number-members">${data.groupChat.userAmount}</span>
+                        Thành viên
                         <i class="fa fa-users"></i>
                     </a>
                 </span>
@@ -151,6 +152,7 @@ function callCreateGroupChat() {
                 <span class="chat-menu-right">
                     <a href="javascript:void(0)" class="number-messages" data-toggle="modal">
                         <span class="show-number-messages">${data.groupChat.messageAmount}</span>
+                        Tin nhắn
                         <i class="fa fa-comment-o"></i>
                     </a>
                 </span>
@@ -222,12 +224,19 @@ function callCreateGroupChat() {
         $("body").append(attachmentModalData);
 
         // Step 08: Emit new group created
-        socket.emit("new-group-created", {groupChat: data.groupChat});
+        socket.emit("new-group-created", {
+          groupChat: data.groupChat,
+          membersModalData: data.membersModalData
+        });
 
         // Step 09: nodthing to code :|
 
         // Step 10: update online
         socket.emit("check-status");
+
+        // extras: membersModal
+        $("body").append(data.membersModalData);
+        userTalk();
       })
       .fail(function(response) {
         alertify.notify(response.responseText, "error", 7);
@@ -292,8 +301,9 @@ $(document).ready(function() {
                 <a href="javascript:void(0)">&nbsp;</a>
             </span>
             <span class="chat-menu-right">
-                <a href="javascript:void(0)" class="number-members" data-toggle="modal">
+                <a href="#membersModal_${response.groupChat._id}" class="number-members" data-toggle="modal">
                     <span class="show-number-members">${response.groupChat.userAmount}</span>
+                    Thành viên
                     <i class="fa fa-users"></i>
                 </a>
             </span>
@@ -303,6 +313,7 @@ $(document).ready(function() {
             <span class="chat-menu-right">
                 <a href="javascript:void(0)" class="number-messages" data-toggle="modal">
                     <span class="show-number-messages">${response.groupChat.messageAmount}</span>
+                    Tin nhắn
                     <i class="fa fa-comment-o"></i>
                 </a>
             </span>
@@ -380,5 +391,9 @@ $(document).ready(function() {
 
     // Step 10: update online
     socket.emit("check-status");
+
+    // extras: membersModal
+    $("body").append(response.membersModalData);
+    userTalk();
   });
 });

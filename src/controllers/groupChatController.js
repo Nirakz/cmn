@@ -1,5 +1,11 @@
 import {validationResult} from "express-validator/check";
 import {groupChat} from "./../services/index";
+// extras
+import ejs from "ejs";
+import {promisify} from "util";
+
+// Make renderFile available with async await
+const renderFile = promisify(ejs.renderFile).bind(ejs); // extras
 
 let addNewGroup = async (req, res) => {
   let errorArr = [];
@@ -21,7 +27,16 @@ let addNewGroup = async (req, res) => {
     let groupChatName = req.body.groupChatName;
 
     let newGroupChat = await groupChat.addNewGroup(currentUserId, arrayMemberIds, groupChatName);
-    return res.status(200).send({groupChat: newGroupChat});
+    // extras
+    let membersModalData = await renderFile("src/views/main/extras/_newMembersModal.ejs", {
+      newGroupChat: newGroupChat,
+      user: req.user
+    });
+
+    return res.status(200).send({
+      groupChat: newGroupChat,
+      membersModalData: membersModalData, //extras
+    });
   } catch (error) {
     return res.status(500).send(error);
   }

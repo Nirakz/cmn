@@ -84,12 +84,14 @@ let readMoreGroupChat = async (req, res) => {
     let rightSideData = await renderFile("src/views/main/extras/readMoreGroup/_rightSide.ejs", dataToRender);
     let imageModalData = await renderFile("src/views/main/extras/readMoreGroup/_imageModal.ejs", dataToRender);
     let attachmentModalData = await renderFile("src/views/main/extras/readMoreGroup/_attachmentModal.ejs", dataToRender);
+    let membersModalData = await renderFile("src/views/main/extras/readMoreGroup/_membersModal.ejs", dataToRender);
 
     return res.status(200).send({
       leftSideData: leftSideData,
       rightSideData: rightSideData,
       imageModalData: imageModalData,
-      attachmentModalData: attachmentModalData
+      attachmentModalData: attachmentModalData,
+      membersModalData: membersModalData
     });
   } catch (error) {
     console.log(error);

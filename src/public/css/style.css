@@ -1731,3 +1731,21 @@ label:focus,
     opacity: 0;
   }
 }
+
+.list-members li {
+  list-style-type: none;
+  float: left;
+  margin: 0px 0px 0px 30px;
+}
+
+.list-members li .user-name {
+  margin-left: -15px;
+}
+
+.list-members li .user-talk {
+  margin-left: -15px;
+}
+
+.this-is-you p {
+  color: #ff7675;
+}

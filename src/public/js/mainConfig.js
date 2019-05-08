@@ -203,6 +203,28 @@ function zoomImageChat() {
     });
   });
 }
+//extras
+function userTalk() {
+  $(".user-talk").unbind("click").on("click", function() {
+    let dataChat = $(this).data("uid");
+    $("ul.people").find(`a[href="#uid_${dataChat}"]`).click();
+    $(this).closest("div.modal").modal("hide");
+  });
+}
+//extras
+function notYetConversations() {
+  if(!$("ul.people").find("a").length) {
+    Swal.fire({
+      title: "Bạn chưa có bạn bè? Hãy tìm kiếm bạn bè để trò chuyện!",
+      type: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#2ECC71",
+      confirmButtonText: "Xác nhận",
+    }).then((result) => {
+      $("#contactsModal").modal("show");
+    });
+  }
+}
 
 $(document).ready(function() {
   // Hide số thông báo trên đầu icon mở modal contact
@@ -234,7 +256,9 @@ $(document).ready(function() {
   convertEmoji();
 
   // Click vào phần tử đầu tiên của cuộc trò chuyện khi load trang web
-  $("ul.people").find("a")[0].click();
+  // if($("ul.people").find("a").length) {
+    $("ul.people").find("a")[0].click();
+  // }
 
   $("#video-chat-group").bind("click", function() {
     alertify.notify("Không khả dụng tính năng này với nhóm trò chuyện. Vui lòng thử lại với trò chuyện cá nhân.", "error", 7);
@@ -242,4 +266,6 @@ $(document).ready(function() {
 
   // extras
   zoomImageChat();
+  userTalk();
+  notYetConversations();
 });

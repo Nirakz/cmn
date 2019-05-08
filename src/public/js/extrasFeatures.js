@@ -142,6 +142,8 @@ function readMoreGroupChat() {
 
       // extras
       zoomImageChat();
+      $("body").append(data.membersModalData);
+      userTalk();
     });
   });
 }
