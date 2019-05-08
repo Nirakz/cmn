@@ -48,7 +48,7 @@ $(document).ready(function() {
       $(".read-more-all-chat-loader").css("display", "none");
 
       // step 11: call readmoreMessages
-      // readMoreMessages();
+      readMoreMessages();
 
       // extras
       zoomImageChat();

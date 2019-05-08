@@ -256,9 +256,9 @@ $(document).ready(function() {
   convertEmoji();
 
   // Click vào phần tử đầu tiên của cuộc trò chuyện khi load trang web
-  // if($("ul.people").find("a").length) {
+  if($("ul.people").find("a").length) {
     $("ul.people").find("a")[0].click();
-  // }
+  }
 
   $("#video-chat-group").bind("click", function() {
     alertify.notify("Không khả dụng tính năng này với nhóm trò chuyện. Vui lòng thử lại với trò chuyện cá nhân.", "error", 7);
