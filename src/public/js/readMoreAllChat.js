@@ -52,6 +52,8 @@ $(document).ready(function() {
 
       // extras
       zoomImageChat();
+      $("body").append(data.membersModalData);
+      userTalk();
     });
   });;
 });

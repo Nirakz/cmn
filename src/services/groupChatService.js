@@ -1,5 +1,6 @@
 import _ from "lodash";
 import ChatGroupModel from "./../models/chatGroupModel";
+import UserModel from "./../models/userModel";
 
 let addNewGroup = (currentUserId, arrayMemberIds, groupChatName) => {
   return new Promise(async (resolve, reject) => {
@@ -17,6 +18,15 @@ let addNewGroup = (currentUserId, arrayMemberIds, groupChatName) => {
       };
 
       let newGroup = await ChatGroupModel.createNew(newGroupItem);
+
+      // extras get userInfo
+      newGroup = newGroup.toObject();
+      newGroup.membersInfo = [];
+      for (let member of newGroup.members) {
+        let userInfo = await UserModel.getNormalUserDataById(member.userId);
+        newGroup.membersInfo.push(userInfo);
+      }
+      
       resolve(newGroup);
     } catch (error) {
       reject(error);

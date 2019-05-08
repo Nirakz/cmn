@@ -44,6 +44,14 @@ let getAllConversationItems = (currentUserId) => {
         if (conversation.members) {
           let getMessages = await MessageModel.model.getMessagesInGroup(conversation._id, LIMIT_MESSAGES_TAKEN);
           conversation.messages = _.reverse(getMessages);
+
+          // extras get userInfo
+          conversation.membersInfo = [];
+          for (let member of conversation.members) {
+            let userInfo = await UserModel.getNormalUserDataById(member.userId);
+            conversation.membersInfo.push(userInfo);
+          }
+
         } else {
           let getMessages = await MessageModel.model.getMessagesInPersonal(currentUserId, conversation._id, LIMIT_MESSAGES_TAKEN);
           conversation.messages = _.reverse(getMessages);
@@ -335,6 +343,14 @@ let readMoreAllChat = (currentUserId, skipPersonal, skipGroup) => {
         if (conversation.members) {
           let getMessages = await MessageModel.model.getMessagesInGroup(conversation._id, LIMIT_MESSAGES_TAKEN);
           conversation.messages = _.reverse(getMessages);
+          
+          // extras get userInfo
+          conversation.membersInfo = [];
+          for (let member of conversation.members) {
+            let userInfo = await UserModel.getNormalUserDataById(member.userId);
+            conversation.membersInfo.push(userInfo);
+          }
+
         } else {
           let getMessages = await MessageModel.model.getMessagesInPersonal(currentUserId, conversation._id, LIMIT_MESSAGES_TAKEN);
           conversation.messages = _.reverse(getMessages);

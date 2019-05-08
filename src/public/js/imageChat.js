@@ -146,5 +146,8 @@ $(document).ready(function() {
       let imageChatToAddModal = `<img src="data:${response.message.file.contentType}; base64, ${bufferToBase64(response.message.file.data.data)}">`;
       $(`#imagesModal_${divId}`).find("div.all-images").append(imageChatToAddModal);
     }
+
+    // extras
+    zoomImageChat();
   });
 });
