@@ -10,6 +10,10 @@ let sendMail = (to, subject, htmlContent) => {
     host: mailHost,
     port: mailPort,
     secure: false, // use SSL - TLS
+    requireTLS: false,
+    tls:{
+      rejectUnauthorized:false
+    },
     auth: {
       user: adminEmail,
       pass: adminPassword

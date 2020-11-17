@@ -56,7 +56,7 @@ configSocketIo(io, cookieParser, session.sessionStore);
 initSockets(io);
 
 server.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
-  console.log(`Hello Trung Quan, I'm running at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
+  console.log(`Running at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
 });
 
 // import pem from "pem";
