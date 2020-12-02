@@ -1,10 +1,10 @@
-# # Config database environtment variable
-# export DB_CONNECTION=mongodb
-# export DB_HOST=localhost
-# export DB_PORT=27017
-# export DB_NAME=awesome_chat
-# export DB_USERNAME=""
-# export DB_PASSWORD=""
+# Config database environtment variable
+export DB_CONNECTION=mongodb
+export DB_HOST=localhost
+export DB_PORT=27017
+export DB_NAME=alochat-123
+export DB_USERNAME=""
+export DB_PASSWORD=""
 
 # Config app environtment variable
 export APP_HOST=localhost

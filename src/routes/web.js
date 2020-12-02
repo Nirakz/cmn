@@ -5,6 +5,7 @@ import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
 import initPassportFacebook from "./../controllers/passportController/facebook";
 import initPassportGoogle from "./../controllers/passportController/google";
+import UserModel from "./../models/userModel";
 
 // Init all passport
 initPassportLocal();
@@ -83,8 +84,26 @@ let initRoutes = (app) => {
   router.get("/conversation/search/:keyword", auth.checkLoggedIn, extrasValid.searchConversation, extras.searchConversation);
   router.get("/message/read-more-personal-chat", auth.checkLoggedIn, extras.readMorePersonalChat);
   router.get("/message/read-more-group-chat", auth.checkLoggedIn, extras.readMoreGroupChat);
+  router.get('/user-list', function(req, res, next) {
+   //{ title: 'data', userData: data}
+   UserModel.find({}, function(err, data) {
+    // note that data is an array of objects, not a single object!
+    res.render('admin/managerUser',{ 'Userdata': data});
+    
 
+})});
+router.get('/deleteUserbyIDahihi', function(req, res, next) {
+  //{ title: 'data', userData: data}
+  let id = req.query._id;
+  UserModel.findByIdAndRemove(id, function(err, data) {
+   // note that data is an array of objects, not a single object!
+   res.redirect('/user-list');
+   
+
+})});
   return app.use("/", router);
 };
+
+
 
 module.exports = initRoutes;
