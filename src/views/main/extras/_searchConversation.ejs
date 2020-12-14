@@ -1,7 +1,7 @@
 <% allConversations.forEach(function(conversation) { %>
   <% if (conversation.members) { %>
     <li data-chat="<%= conversation._id %>">
-        <img src="/images/users/group-avatar" alt="" />
+        <img src="/images/users/group-avatar.png" alt="" />
         <%= conversation.name %>
     </li>
   <% } else { %>

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bluebird from "bluebird";
+require('dotenv').config();
 
 /**
  * Connect to MongoDB
