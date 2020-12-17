@@ -108,7 +108,7 @@ ContactSchema.statics = {
    * @param {string} contactId 
    */
   approveRequestContactReceived(userId, contactId) {
-    return this.update({
+    return this.updateOne({
       $and: [
         {"contactId": userId},
         {"userId": contactId},
@@ -170,7 +170,7 @@ ContactSchema.statics = {
    * @param {string} userId 
    */
   countAllContacts(userId) {
-    return this.count({
+    return this.countDocuments({
       $and: [
         {$or: [
           {"userId": userId},
@@ -186,7 +186,7 @@ ContactSchema.statics = {
    * @param {string} userId 
    */
   countAllContactsSent(userId) {
-    return this.count({
+    return this.countDocuments({
       $and: [
         {"userId": userId},
         {"status": false}
@@ -199,7 +199,7 @@ ContactSchema.statics = {
    * @param {string} userId 
    */
   countAllContactsReceived(userId) {
-    return this.count({
+    return this.countDocuments({
       $and: [
         {"contactId": userId},
         {"status": false}
@@ -261,7 +261,7 @@ ContactSchema.statics = {
    * @param {string} contactId contact id
    */
   updateWhenHasNewMessage(userId, contactId) {
-    return this.update({
+    return this.updateOne({
       $or: [
         {$and: [
           {"userId": userId},

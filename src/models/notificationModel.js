@@ -39,7 +39,7 @@ NotificationSchema.statics = {
    * @param {string} userId 
    */
   countNotifUnread(userId) {
-    return this.count({
+    return this.countDocuments({
       $and: [
         {"receiverId": userId},
         {"isRead": false}
