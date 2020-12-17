@@ -15,15 +15,15 @@ let register = [
 ];
 
 let admin = [
-  check("email", transValidation.email_incorrect)
+  check("email")
     .isEmail()
     .trim(),
-  check("gender", transValidation.gender_incorrect)
+  check("gender")
     .isIn(["male", "female"]),
-  check("password", transValidation.password_incorrect)
+  check("password")
     .isLength({min: 8})
     .matches(),
-  check("password_confirmation", transValidation.password_confirmation_incorrect)
+  check("password_confirmation")
     .custom((value, {req}) => value === req.body.password)
 ];
 

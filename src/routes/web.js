@@ -21,7 +21,7 @@ let router = express.Router();
 let initRoutes = (app) => {
   router.get("/login-register", auth.checkLoggedOut, auth.getLoginRegister);
   router.post("/register", auth.checkLoggedOut, authValid.register, auth.postRegister);
-  router.post("/admin",authValid.admin , auth.postAdmin);
+  router.post("/admin",authValid.admin , auth.postAdmin, auth.getAdmin);
   router.get("/verify/:token", auth.checkLoggedOut, auth.verifyAccount);
   router.post("/login", auth.checkLoggedOut, passport.authenticate("local", {
     successRedirect: "/",
@@ -94,8 +94,8 @@ let initRoutes = (app) => {
     res.render('admin/managerUser',{ 'Userdata': data});
     
 
-}).exec()});
-router.get('/deleteUserbyIDahihi', function(req, res, next) {
+})});
+router.get('/deleteUserbyID', function(req, res, next) {
   //{ title: 'data', userData: data}
   let id = req.query._id;
   UserModel.findByIdAndRemove(id, function(err, data) {

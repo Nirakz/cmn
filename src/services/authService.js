@@ -54,7 +54,7 @@ let admin = (email, gender, password, protocol, host) => {
         return reject(transErrors.account_removed);
       }
       if (!userByEmail.local.isActive) {
-        return reject(transErrors.account_not_active);
+        return reject(transErrors.account_not_active2);
       }
       return reject(transErrors.account_in_use);
     }

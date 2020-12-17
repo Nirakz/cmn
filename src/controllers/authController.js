@@ -9,6 +9,13 @@ let getLoginRegister = (req, res) => {
   });
 };
 
+let getAdmin = (req, res) => {
+  return res.render("admin/managerUser", {
+    errors: req.flash("errors"),
+    success: req.flash("success")
+  });
+};
+
 let postAdmin = async (req, res) => {
   let errorArr = [];
   let successArr = [];
@@ -103,6 +110,7 @@ let checkLoggedOut = (req, res, next) => {
 
 module.exports = {
   getLoginRegister: getLoginRegister,
+  getAdmin: getAdmin,
   postRegister: postRegister,
   postAdmin : postAdmin,
   verifyAccount: verifyAccount,
