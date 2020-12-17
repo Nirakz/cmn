@@ -259,9 +259,10 @@
                             <th>Name</th>
                             <th>SDT</th>
                             <th>Email</th>
-                            <th>Diachi</th>
-                            <th>GioiTinh</th>
-                            <th>Tac vu</th>
+                            <th>Địa Chỉ</th>
+                            <th>Giới Tính</th>
+                            <th>Xác thực</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -286,7 +287,10 @@
                                     <%= Userdata[i].gender %>
                                 </td>
                                 <td>
-                                    <a href="/deleteUserbyIDahihi/?_id=<%= Userdata[i]._id %>" class="delete"
+                                    <%= Userdata[i].local.isActive %>
+                                </td>
+                                <td>
+                                    <a href="" class="delete"
                                         title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                                 </td>
 
@@ -311,9 +315,9 @@
 
                         <div class="box">
                             <div class="content">
-
+                                <div class="error"></div>    
                                 <div class="form addBox">
-                                    <form method="post" html="{:multipart=>true}" data-remote="true" action="/register"
+                                    <form method="post" html="{:multipart=>true}" data-remote="true" action="/admin"
                                         accept-charset="UTF-8">
                                         <input id="email" class="form-control" type="text" placeholder="Email"
                                             name="email" required>
@@ -321,10 +325,10 @@
                                                 checked required> Nam</label>&nbsp;
                                         &nbsp;<label class="radio-inline"><input type="radio" name="gender"
                                                 value="female" required> Nữ</label>&nbsp;
-                                        <input id="password" class="form-control" type="password" placeholder="Password"
+                                        <input id="password" class="form-control" type="password" placeholder="Mật khẩu"
                                             name="password" required>
                                         <input id="password_confirmation" class="form-control" type="password"
-                                            placeholder="Repeat Password" name="password_confirmation" required>
+                                            placeholder="Nhập lại mật khẩu" name="password_confirmation" required>
                                         <input class="btn btn-default btn-add" type="submit" value="Thêm tài khoản"
                                             name="commit">
                                     </form>

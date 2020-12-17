@@ -9,6 +9,34 @@ let getLoginRegister = (req, res) => {
   });
 };
 
+let postAdmin = async (req, res) => {
+  let errorArr = [];
+  let successArr = [];
+
+  let validationErrors = validationResult(req);
+  if (!validationErrors.isEmpty()) {
+    let errors = Object.values(validationErrors.mapped());
+    errors.forEach(item => {
+      errorArr.push(item.msg);
+    });
+    
+    req.flash("errors", errorArr);
+    return res.redirect("/admin");
+  }
+  
+  try {
+    let createUserSuccess = await auth.admin(req.body.email, req.body.gender, req.body.password, req.protocol, req.get("host"));
+    successArr.push(createUserSuccess);
+
+    req.flash("success", successArr);
+    return res.redirect("/admin");
+  } catch (error) {
+    errorArr.push(error);
+    req.flash("errors", errorArr);
+    return res.redirect("/admin");
+  }
+};
+
 let postRegister = async (req, res) => {
   let errorArr = [];
   let successArr = [];
@@ -76,6 +104,7 @@ let checkLoggedOut = (req, res, next) => {
 module.exports = {
   getLoginRegister: getLoginRegister,
   postRegister: postRegister,
+  postAdmin : postAdmin,
   verifyAccount: verifyAccount,
   getLogout: getLogout,
   checkLoggedIn: checkLoggedIn,

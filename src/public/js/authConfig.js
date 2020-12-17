@@ -10,19 +10,24 @@ function showRegisterForm() {
 
 }
 function showAddForm() {
+  $('#AddModal').fadeOut('fast', function() {
+    $('.addBox').fadeIn('fast');
+    $('.modal-title').html('Thêm User');
+  });
+  $('.error').removeClass('alert alert-danger').html('');
+}
+function showLoginForm() {
   $('#loginModal .registerBox').fadeOut('fast', function() {
     $('.loginBox').fadeIn('fast');
-    $('.modal-title').html('Add User');
+    $('.register-footer').fadeOut('fast', function() {
+      $('.login-footer').fadeIn('fast');
+    });
+
+    $('.modal-title').html('Đăng nhập');
   });
   $('.error').removeClass('alert alert-danger').html('');
 }
 
-function showLoginForm() {
-  $('#AddModal').fadeOut('fast', function() {
-    $('.addBox').fadeIn('fast');
-  });
-  $('.error').removeClass('alert alert-danger').html('');
-}
 
 function openLoginModal() {
   setTimeout(function() {
