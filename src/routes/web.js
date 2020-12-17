@@ -21,6 +21,7 @@ let router = express.Router();
 let initRoutes = (app) => {
   router.get("/login-register", auth.checkLoggedOut, auth.getLoginRegister);
   router.post("/register", auth.checkLoggedOut, authValid.register, auth.postRegister);
+  router.post("/admin",authValid.admin , auth.postAdmin);
   router.get("/verify/:token", auth.checkLoggedOut, auth.verifyAccount);
   router.post("/login", auth.checkLoggedOut, passport.authenticate("local", {
     successRedirect: "/",
@@ -38,6 +39,7 @@ let initRoutes = (app) => {
     successRedirect: "/",
     failureRedirect: "/login-register"
   }));
+  router.post("/admin", auth.postAdmin);
 
   router.get("/", auth.checkLoggedIn, home.getHome);
   router.get("/logout", auth.checkLoggedIn, auth.getLogout);
@@ -84,7 +86,8 @@ let initRoutes = (app) => {
   router.get("/conversation/search/:keyword", auth.checkLoggedIn, extrasValid.searchConversation, extras.searchConversation);
   router.get("/message/read-more-personal-chat", auth.checkLoggedIn, extras.readMorePersonalChat);
   router.get("/message/read-more-group-chat", auth.checkLoggedIn, extras.readMoreGroupChat);
-  router.get('/user-list', function(req, res, next) {
+
+  router.get('/admin', function(req, res, next) {
    //{ title: 'data', userData: data}
    UserModel.find({}, function(err, data) {
     // note that data is an array of objects, not a single object!
@@ -97,7 +100,7 @@ router.get('/deleteUserbyIDahihi', function(req, res, next) {
   let id = req.query._id;
   UserModel.findByIdAndRemove(id, function(err, data) {
    // note that data is an array of objects, not a single object!
-   res.redirect('/user-list');
+   res.redirect('/admin');
    
 
 })});
