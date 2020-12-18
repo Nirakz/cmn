@@ -89,7 +89,7 @@ let initRoutes = (app) => {
 
   router.get('/admin', function(req, res, next) {
    //{ title: 'data', userData: data}
-   UserModel.find({$and: [{"local.isActive": true}]}, function(err, data) {
+   UserModel.find({}, function(err, data) {
     // note that data is an array of objects, not a single object!
     res.render('admin/managerUser',{ 'Userdata': data});
     

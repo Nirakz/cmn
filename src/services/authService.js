@@ -48,17 +48,6 @@ let register = (email, gender, password, protocol, host) => {
 
 let admin = (email, gender, password, protocol, host) => {
   return new Promise(async (resolve, reject) => {
-    let userByEmail = await UserModel.findByEmail(email);
-    if (userByEmail) {
-      if (userByEmail.deletedAt != null) {
-        return reject(transErrors.account_removed);
-      }
-      if (!userByEmail.local.isActive) {
-        return reject(transErrors.account_not_active2);
-      }
-      return reject(transErrors.account_in_use);
-    }
-
     let salt = bcrypt.genSaltSync(saltRounds);
     let userItem = {
       username: email.split("@")[0],

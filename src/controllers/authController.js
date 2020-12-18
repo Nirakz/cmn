@@ -94,6 +94,11 @@ let getLogout = (req, res) => {
   return res.redirect("/login-register");
 };
 
+let getdelete = (req, res) => {
+  req.logout(); // remove session passport user
+  return res.redirect("/admin");
+};
+
 let checkLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     return res.redirect("/login-register");
@@ -115,6 +120,7 @@ module.exports = {
   postAdmin : postAdmin,
   verifyAccount: verifyAccount,
   getLogout: getLogout,
+  getdelete : getdelete,
   checkLoggedIn: checkLoggedIn,
   checkLoggedOut: checkLoggedOut
 };
