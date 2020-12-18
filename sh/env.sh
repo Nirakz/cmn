@@ -8,7 +8,7 @@ export SESSION_KEY="thanhchinh"
 export SESSION_SECRET="greencat"
 
 # Config admin email account
-export MAIL_USER=alochat2.0.0@gmail.com
+export MAIL_USER=alochatcnm@gmail.com
 export MAIL_PASSWORD=0362944566chinh
 export MAIL_HOST=smtp.gmail.com
 export MAIL_PORT=587
