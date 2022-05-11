@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node src/server.js"
+    "start": "babel-node src/server.js",
+    "clean": "del -rf build && mkdir build",
+    "build-babel": "babel ./src -d ./build/src",
+    "build": "npm run clean && npm run build-babel",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,24 +26,25 @@
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
-    "ejs": "^2.5.7",
+    "ejs": "^3.1.7",
     "express": "^4.16.4",
     "express-ejs-extend": "0.0.1",
     "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
+    "express-validator": "^6.14.0",
     "fs-extra": "^7.0.1",
     "lodash": "^4.17.20",
     "moment": "^2.24.0",
-    "mongoose": "^5.11.8",
+    "mongoose": "^5.13.14",
     "multer": "^1.4.1",
-    "nodemailer": "^4.4.2",
+    "nodemailer": "^6.7.5",
+    "nodemon": "^2.0.16",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport.socketio": "^3.7.0",
     "request": "^2.88.0",
-    "socket.io": "^2.2.0",
+    "socket.io": "^4.5.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
